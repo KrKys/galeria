@@ -23,8 +23,30 @@ function getRandomImages() {
     let imageCollection = document.querySelectorAll("div#thumbnailContainer img");
     for(let i = 0; i < imageCollection.length; i++) {
         imageCollection[i].src = randomPicsumUrl();
+        imageCollection[i].addEventListener("click", showPicture);
     }
     document.querySelector("div#bigImage > img").src = imageCollection[0].src;
+}
+function showPicture() {
+let url = event.srcElement.src;
+document.querySelector("div#bigImage > img").src = url;
+}
+function nextPicture() {
+    let currentUrl = document.querySelector("div#bigImage > img").src;
+    let imageCollection = document.querySelectorAll("div#thumbnailContainer img");
+    let urlArray = [];
+    for(let i=0; i<imageCollection.length; i++) {
+        urlArray.push(imageCollection[i].src);
+    }
+let currentIndex = urlArray.indexOf(currentUrl);
+let nextPictureUrl = "";
+if(currentIndex == urlArray.length-1){
+    nextPictureUrl = urlArray[0];
+}
+else{ 
+    nextPictureUrl = urlArray[currentIndex+1];
+}
+    document.querySelector("div#bigImage > img").src  = nextPictureUrl;
 }
 
 window.addEventListener("load", getRandomImages);
@@ -32,3 +54,5 @@ window.addEventListener("load", getRandomImages);
 document.querySelector("div#bigImage img").addEventListener("click", showOverlay);
 
 document.querySelector("div#imageOverlay").addEventListener("click", hideOverlay);
+
+document.querySelector("div#rightArrow").addEventListener("click", nextPicture);
