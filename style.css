@@ -34,3 +34,19 @@ div#thumbnailContainer {
 img.thumbnail {
     margin: 1rem;
 }
+div#imageOverlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div#imageOverlay img {
+    max-width: 90%;
+    max-height: 90%;
+    flex: 1;
+}
